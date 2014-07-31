@@ -40,6 +40,7 @@ set ( SOURCES
         util.cpp
 	Daemon.cpp
     SOCKS.cpp
+    sslclient.cpp
 )
 
 set ( HEADERS
@@ -70,6 +71,7 @@ set ( HEADERS
         util.h
 	Daemon.h
     SOCKS.h
+    sslclient.h
 )
 
 if (WIN32)
