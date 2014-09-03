@@ -143,7 +143,9 @@ namespace util
 		s << "<!DOCTYPE html>\n<html lang=\"en\">"; // TODO: Add support for locale.
 		s << "<head><meta charset=\"utf-8\" />"; // TODO: Find something to parse html/template system. This is horrible.
 		s << "<link rel='shortcut icon' href='";
+#ifndef _WIN32
 		s << ICTOOPIE_64_FAVICON;
+#endif
 		s << "' /><title>Purple I2Pd Webconsole</title></head>";
 		// Head end
 		FillContent (s);
