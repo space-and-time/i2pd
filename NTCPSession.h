@@ -2,10 +2,10 @@
 #define NTCP_SESSION_H__
 
 #include <inttypes.h>
-#include <list>
 #include <map>
 #include <memory>
 #include <thread>
+#include <mutex>
 #include <boost/asio.hpp>
 #include <cryptopp/modes.h>
 #include <cryptopp/aes.h>
@@ -128,7 +128,6 @@ namespace transport
 			int m_ReceiveBufferOffset; 
 
 			i2p::I2NPMessage * m_NextMessage;
-			std::list<i2p::I2NPMessage *> m_DelayedMessages;
 			size_t m_NextMessageOffset;
 
 			size_t m_NumSentBytes, m_NumReceivedBytes;
@@ -167,6 +166,7 @@ namespace transport
 			boost::asio::io_service m_Service;
 			boost::asio::io_service::work m_Work;
 			boost::asio::ip::tcp::acceptor * m_NTCPAcceptor, * m_NTCPV6Acceptor;
+			std::mutex m_NTCPSessionsMutex;
 			std::map<i2p::data::IdentHash, std::shared_ptr<NTCPSession> > m_NTCPSessions;
 
 		public:
